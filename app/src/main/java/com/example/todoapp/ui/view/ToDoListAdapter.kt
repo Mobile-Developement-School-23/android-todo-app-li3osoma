@@ -91,12 +91,12 @@ class ToDoListAdapter(
         if(items[position].done) {
             holder.binding.text.paintFlags =
                 holder.binding.text.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-            holder.binding.text.setTextColor(completeColor)
+            //holder.binding.text.setTextColor(androidx.appcompat.R.attr.colorAccent)
         }
         else{
             holder.binding.text.paintFlags =
                 holder.binding.text.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-            holder.binding.text.setTextColor(incompleteColor)
+
         }
 
         holder.binding.checkbox.setOnClickListener {

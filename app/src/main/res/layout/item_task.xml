@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp">
+    android:padding="10dp"
+    style="@style/Item"
+    android:foreground="@drawable/ripple_item">
 
     <CheckBox
         android:id="@+id/checkbox"
@@ -37,9 +39,8 @@
         android:text="Your task"
         android:maxLines="3"
         android:ellipsize="end"
-        android:textColor="@color/black"
         android:visibility="visible"
-        style="@style/listTaskTextStyle"
+        style="@style/body"
         app:layout_constraintStart_toEndOf="@id/checkbox"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/deadline"
@@ -53,7 +54,7 @@
         android:layout_marginTop="5dp"
         android:text="дата"
         android:visibility="visible"
-        style="@style/listTaskDateTextStyle"
+        style="@style/h3"
         app:layout_constraintStart_toEndOf="@id/checkbox"
         app:layout_constraintTop_toBottomOf="@id/text"
         app:layout_constraintBottom_toBottomOf="parent"/>

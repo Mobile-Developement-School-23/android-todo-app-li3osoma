@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/system"
+        android:icon="@drawable/icon_system"
+        android:title="System"/>
+    <item
+        android:id="@+id/day"
+        android:icon="@drawable/icon_day"
+        android:title="Day"/>
+    <item
+        android:id="@+id/night"
+        android:icon="@drawable/icon_night"
+        android:title="Night"/>
+</menu>

@@ -2,12 +2,18 @@ package com.example.todoapp.ui.view
 
 import android.annotation.SuppressLint
 import android.graphics.*
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,6 +27,7 @@ import com.example.todoapp.App
 import com.example.todoapp.datasource.network.connection.ConnectionObserver
 import com.example.todoapp.R
 import com.example.todoapp.databinding.FragmentToDoListBinding
+import com.example.todoapp.datasource.persistence.SharedPreferencesHelper
 import com.example.todoapp.domain.model.ToDoItem
 import com.example.todoapp.utils.*
 import com.example.todoapp.ui.viewmodel.ToDoViewModel
@@ -30,6 +37,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import java.util.UUID
+import javax.inject.Inject
 
 
 class ToDoListFragment : Fragment(){
@@ -38,11 +46,15 @@ class ToDoListFragment : Fragment(){
     lateinit var adapter: ToDoListAdapter
     private val toDoViewModel: ToDoViewModel by viewModels {(requireContext().applicationContext as App).appComponent.viewModelFactory()}
     private var internetState = ConnectionObserver.Status.Unavailable
+
+    @Inject
+    lateinit var sharedPreferencesHelper: SharedPreferencesHelper
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentToDoListBinding.inflate(inflater, container, false)
+        (requireActivity().application as App).appComponent.inject(this)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -75,8 +87,8 @@ class ToDoListFragment : Fragment(){
                 item.done=!item.done
                 if (internetState == ConnectionObserver.Status.Available) {
                     toDoViewModel.updateTaskApi(item)
-                    if(item.done) Toast.makeText(context, getString(R.string.complete_message), Toast.LENGTH_SHORT).show()
-                    else Toast.makeText(context, getString(R.string.incomplete_message), Toast.LENGTH_SHORT).show()
+//                    if(item.done) Toast.makeText(context, getString(R.string.complete_message), Toast.LENGTH_SHORT).show()
+//                    else Toast.makeText(context, getString(R.string.incomplete_message), Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(context, getString(R.string.no_connection_message), Toast.LENGTH_LONG).show()
                 }
@@ -102,12 +114,66 @@ class ToDoListFragment : Fragment(){
         }
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun setUpThemeMenu(){
+
+        when(sharedPreferencesHelper.getTheme()){
+            SYSTEM_THEME -> {
+                binding.themButton.setImageDrawable(resources.getDrawable(R.drawable.icon_system))
+            }
+            DAY_THEME -> {
+                binding.themButton.setImageDrawable(resources.getDrawable(R.drawable.icon_day))
+            }
+            NIGHT_THEME -> {
+                binding.themButton.setImageDrawable(resources.getDrawable(R.drawable.icon_night))
+            }
+        }
+
+        val popupMenu = PopupMenu(requireContext(), binding.themButton)
+        popupMenu.inflate(R.menu.theme_menu)
+        popupMenu.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.system -> {
+                    if(sharedPreferencesHelper.getTheme() != SYSTEM_THEME) {
+                        sharedPreferencesHelper.putTheme(SYSTEM_THEME)
+                        //AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+                        requireActivity().recreate()
+                    }
+                }
+                R.id.day -> {
+                    if(sharedPreferencesHelper.getTheme() != DAY_THEME) {
+                        sharedPreferencesHelper.putTheme(DAY_THEME)
+                        //AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+                        requireActivity().recreate()
+                    }
+                }
+                R.id.night -> {
+                    if(sharedPreferencesHelper.getTheme() != NIGHT_THEME) {
+                        sharedPreferencesHelper.putTheme(NIGHT_THEME)
+                        //AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
+                        requireActivity().recreate()
+                    }
+                }
+            }
+            false
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            popupMenu.setForceShowIcon(true)
+        }
+
+        binding.themButton.setOnClickListener {
+            popupMenu.show()
+        }
+    }
+
     private fun openItemEditFragment(itemId:String){
         val action = ToDoListFragmentDirections.actionToDoListFragmentToToDoItemEditFragment(itemId)
         Navigation.findNavController(binding.root).navigate(action)
     }
 
     private fun setUpUi(){
+        setUpThemeMenu()
         setUpFloatingButton()
         setUpRecyclerView()
         setUpVisibility()
@@ -168,23 +234,16 @@ class ToDoListFragment : Fragment(){
                     val item = (viewHolder.itemView.tag as ToDoItem)
                     when (direction) {
                         ItemTouchHelper.LEFT -> {
-                            val position = toDoViewModel.getPositionById(item.id)
                             deleteTask(item)
-                            //Toast.makeText(requireContext(), getString(R.string.delete_message),Toast.LENGTH_SHORT).show()
-                            //showRestoreItemSnackbar(item, position)
                         }
                         ItemTouchHelper.RIGHT -> {
                             item.done=!item.done
                             if (internetState == ConnectionObserver.Status.Available) {
                                 toDoViewModel.updateTaskApi(item)
-                                if(item.done) Toast.makeText(context, getString(R.string.complete_message), Toast.LENGTH_SHORT).show()
-                                else Toast.makeText(context, getString(R.string.incomplete_message), Toast.LENGTH_SHORT).show()
+//                                if(item.done) Toast.makeText(context, getString(R.string.complete_message), Toast.LENGTH_SHORT).show()
+//                                else Toast.makeText(context, getString(R.string.incomplete_message), Toast.LENGTH_SHORT).show()
                             } else {
-                                Toast.makeText(
-                                    context,
-                                    "No internet connection, will upload with later. Continue offline.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                Toast.makeText(context, getString(R.string.no_connection_message), Toast.LENGTH_LONG).show()
                             }
                             toDoViewModel.updateTaskDb(item)
                             toDoViewModel.loadList()
@@ -201,11 +260,7 @@ class ToDoListFragment : Fragment(){
                                 toDoViewModel.restoreTask(item, position)
                             } else {
                                 toDoViewModel.restoreTaskDb(item, position)
-                                Toast.makeText(
-                                    context,
-                                    "No internet connection, will upload with later. Continue offline.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                Toast.makeText(context, getString(R.string.no_connection_message), Toast.LENGTH_LONG).show()
                             }
                             toDoViewModel.loadList()
                         }.show()
@@ -233,7 +288,7 @@ class ToDoListFragment : Fragment(){
                             p
                         )
                         val icon: Bitmap =
-                            requireContext().getDrawable(R.drawable.icon_delete_white)!!.toBitmap()
+                            requireContext().getDrawable(R.drawable.icon_delete)!!.toBitmap()
                         val iconMarginRight = (dX * -0.2f).coerceAtMost(70f).coerceAtLeast(0f)
                         c.drawBitmap(
                             icon,
@@ -253,7 +308,7 @@ class ToDoListFragment : Fragment(){
                             p
                         )
                         val icon: Bitmap =
-                            requireContext().getDrawable(R.drawable.icon_save_white)!!.toBitmap()
+                            requireContext().getDrawable(R.drawable.icon_save)!!.toBitmap()
 
                         val iconMarginLeft = (dX * 0.2f).coerceAtMost(70f).coerceAtLeast(0f)
                         c.drawBitmap(

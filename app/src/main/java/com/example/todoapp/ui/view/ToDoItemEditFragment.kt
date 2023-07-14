@@ -107,21 +107,13 @@ class ToDoItemEditFragment : Fragment() {
         if(itemId==""){
             binding.deleteIcon.setImageResource(R.drawable.icon_delete_grey)
             binding.deleteTextView.setTextColor(resources.getColor(R.color.grey))
-            binding.deleteIcon.setOnClickListener {
-                Toast.makeText(requireContext(), getString(R.string.non_existed_task_message),Toast.LENGTH_SHORT).show()
-            }
-            binding.deleteTextView.setOnClickListener {
+            binding.deleteButton.setOnClickListener {
                 Toast.makeText(requireContext(), getString(R.string.non_existed_task_message),Toast.LENGTH_SHORT).show()
             }
         }
         else{
             binding.deleteIcon.setImageResource(R.drawable.icon_delete)
-            binding.deleteTextView.setTextColor(resources.getColor(R.color.black))
-            binding.deleteIcon.setOnClickListener {
-                deleteItem()
-                openListFragment()
-            }
-            binding.deleteTextView.setOnClickListener {
+            binding.deleteButton.setOnClickListener {
                 deleteItem()
                 openListFragment()
             }
@@ -177,7 +169,6 @@ class ToDoItemEditFragment : Fragment() {
             }
 
             ToDoItem.Importance.basic.toString() -> {
-                binding.importanceEditTextView.setTextColor(resources.getColor(R.color.black))
                 binding.importanceImageView.visibility = View.GONE
                 val params: MarginLayoutParams = binding.importanceEditTextView.layoutParams
                         as MarginLayoutParams

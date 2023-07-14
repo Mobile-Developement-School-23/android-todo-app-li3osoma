@@ -12,8 +12,10 @@
         <action
             android:id="@+id/action_toDoListFragment_to_toDoItemEditFragment"
             app:destination="@id/toDoItemEditFragment"
-            app:enterAnim="@anim/nav_default_pop_enter_anim"
-            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_in_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/toDoItemEditFragment"
