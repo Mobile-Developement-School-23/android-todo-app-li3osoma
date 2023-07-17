@@ -133,68 +133,6 @@ fun TodoTheme(
 fun AppThemePreview() {
     TodoTheme {
         Surface {
-            Column {
-//                ItemPreview(
-//                    background = TodoTheme.colors.colorPrimary,
-//                    textColor = TodoTheme.colors.colorOnPrimary,
-//                    textStyle = Typography.h1,
-//                    text = "Primary",
-//                )
-//                ItemPreview(
-//                    background = YandexTodoTheme.colors.backSecondary,
-//                    textColor = YandexTodoTheme.colors.labelSecondary,
-//                    textStyle = Typography.h2,
-//                    text = "Secondary",
-//                )
-//                ItemPreview(
-//                    background = YandexTodoTheme.colors.backSecondary,
-//                    textColor = YandexTodoTheme.colors.labelPrimary,
-//                    textStyle = Typography.body1,
-//                    text = "Background",
-//                )
-//                ItemPreview(
-//                    background = YandexTodoTheme.colors.colorRed,
-//                    textColor = YandexTodoTheme.colors.labelPrimary,
-//                    textStyle = Typography.body1,
-//                    text = "Red",
-//                )
-//                ItemPreview(
-//                    background = YandexTodoTheme.colors.colorGreen,
-//                    textColor = YandexTodoTheme.colors.labelPrimary,
-//                    textStyle = Typography.body1,
-//                    text = "Green",
-//                )
-//                ItemPreview(
-//                    background = YandexTodoTheme.colors.colorBlue,
-//                    textColor = YandexTodoTheme.colors.labelPrimary,
-//                    textStyle = Typography.body1,
-//                    text = "Blue",
-//                )
-//                ItemPreview(
-//                    background = YandexTodoTheme.colors.colorGray,
-//                    textColor = YandexTodoTheme.colors.labelPrimary,
-//                    textStyle = Typography.body1,
-//                    text = "Separator",
-//                )
-//                ItemPreview(
-//                    background = YandexTodoTheme.colors.colorGrayLight,
-//                    textColor = YandexTodoTheme.colors.labelPrimary,
-//                    textStyle = Typography.body1,
-//                    text = "Gray",
-//                )
-//                ItemPreview(
-//                    background = YandexTodoTheme.colors.colorGray,
-//                    textColor = YandexTodoTheme.colors.labelPrimary,
-//                    textStyle = Typography.body1,
-//                    text = "Disabled",
-//                )
-//                ItemPreview(
-//                    background = YandexTodoTheme.colors.labelTertiary,
-//                    textColor = YandexTodoTheme.colors.labelPrimary,
-//                    textStyle = Typography.body1,
-//                    text = "Tertiary",
-//                )
-            }
         }
     }
 }
