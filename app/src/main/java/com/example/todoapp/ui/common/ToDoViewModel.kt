@@ -1,4 +1,4 @@
-package com.example.todoapp.ui.viewmodel
+package com.example.todoapp.ui.common
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
@@ -7,7 +7,7 @@ import com.example.todoapp.datasource.network.connection.ConnectionObserver
 import com.example.todoapp.datasource.network.connection.NetworkConnectionObserver
 import com.example.todoapp.datasource.network.dto.TaskListResponse
 import com.example.todoapp.domain.model.ToDoItem
-import com.example.todoapp.datasource.network.connection.Resource
+import com.example.todoapp.datasource.network.dto.Resource
 import com.example.todoapp.datasource.repository.ToDoRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

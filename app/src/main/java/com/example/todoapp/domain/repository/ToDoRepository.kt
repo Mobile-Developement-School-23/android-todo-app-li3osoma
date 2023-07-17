@@ -3,7 +3,7 @@ package com.example.todoapp.domain.repository
 import com.example.todoapp.datasource.network.dto.TaskListResponse
 import com.example.todoapp.datasource.network.dto.TaskResponse
 import com.example.todoapp.domain.model.ToDoItem
-import com.example.todoapp.datasource.network.connection.Resource
+import com.example.todoapp.datasource.network.dto.Resource
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 

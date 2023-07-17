@@ -10,7 +10,7 @@ import androidx.core.app.NotificationCompat
 import com.example.todoapp.R
 import com.example.todoapp.datasource.repository.ToDoRepositoryImpl
 import com.example.todoapp.domain.model.ToDoItem
-import com.example.todoapp.ui.view.MainActivity
+import com.example.todoapp.ui.common.MainActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.toList

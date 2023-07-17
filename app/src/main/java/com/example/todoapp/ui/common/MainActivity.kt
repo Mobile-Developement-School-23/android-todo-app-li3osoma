@@ -1,25 +1,19 @@
-package com.example.todoapp.ui.view
+package com.example.todoapp.ui.common
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import com.example.todoapp.App
-import com.example.todoapp.R
 import com.example.todoapp.datasource.network.connection.UpdateWorker
 import com.example.todoapp.databinding.ActivityMainBinding
-import com.example.todoapp.datasource.persistence.SharedPreferencesHelper
+import com.example.todoapp.datasource.local_persistence.SharedPreferencesHelper
 import com.example.todoapp.utils.DAY_THEME
 import com.example.todoapp.utils.NIGHT_THEME
-import com.example.todoapp.utils.NotificationService
 import com.example.todoapp.utils.SYSTEM_THEME
-import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 

@@ -1,9 +1,8 @@
-package com.example.todoapp.ui.viewmodel
+package com.example.todoapp.ui.common
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.todoapp.App
 import com.example.todoapp.datasource.network.connection.NetworkConnectionObserver
 import com.example.todoapp.datasource.repository.ToDoRepositoryImpl
 import javax.inject.Inject

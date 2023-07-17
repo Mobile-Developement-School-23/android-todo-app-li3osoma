@@ -6,7 +6,7 @@
     app:startDestination="@id/toDoListFragment">
     <fragment
         android:id="@+id/toDoListFragment"
-        android:name="com.example.todoapp.ui.view.ToDoListFragment"
+        android:name="com.example.todoapp.ui.list_screen.ToDoListFragment"
         android:label="fragment_to_do_list"
         tools:layout="@layout/fragment_to_do_list">
         <action
@@ -16,14 +16,25 @@
             app:exitAnim="@android:anim/slide_in_left"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_toDoListFragment_to_toDoItemEditComposeFragment"
+            app:destination="@id/toDoItemEditComposeFragment" />
     </fragment>
     <fragment
         android:id="@+id/toDoItemEditFragment"
-        android:name="com.example.todoapp.ui.view.ToDoItemEditFragment"
+        android:name="com.example.todoapp.ui.edit_screen.ToDoItemEditFragment"
         android:label="fragment_to_do_item_edit"
         tools:layout="@layout/fragment_to_do_item_edit" >
         <argument
             android:name="itemId"
             app:argType="string"/>
+    </fragment>
+    <fragment
+        android:id="@+id/toDoItemEditComposeFragment"
+        android:name="com.example.todoapp.ui.edit_screen_compose.ToDoItemEditComposeFragment"
+        android:label="ToDoItemEditComposeFragment" >
+        <argument
+            android:name="itemId"
+            app:argType="string" />
     </fragment>
 </navigation>

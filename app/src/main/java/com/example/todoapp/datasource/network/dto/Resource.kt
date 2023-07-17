@@ -1,4 +1,4 @@
-package com.example.todoapp.datasource.network.connection
+package com.example.todoapp.datasource.network.dto
 
 /*
 

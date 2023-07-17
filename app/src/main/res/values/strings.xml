@@ -33,6 +33,8 @@
     <string name="weak_connection_message">Weak internet connection</string>
 
     <string name="database_name">todo_database</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

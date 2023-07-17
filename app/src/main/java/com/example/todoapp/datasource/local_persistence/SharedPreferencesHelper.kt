@@ -1,9 +1,6 @@
-package com.example.todoapp.datasource.persistence
+package com.example.todoapp.datasource.local_persistence
 
 import android.content.Context
-import android.content.SharedPreferences
-import android.content.SharedPreferences.Editor
-import android.util.Log
 import com.example.todoapp.utils.API_PREFERENCES
 import com.example.todoapp.utils.DEADLINE_NO
 import com.example.todoapp.utils.IS_DEADLINES

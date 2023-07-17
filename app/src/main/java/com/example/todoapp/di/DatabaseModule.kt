@@ -3,11 +3,10 @@ package com.example.todoapp.di
 import android.content.Context
 import androidx.room.Room
 import com.example.todoapp.R
-import com.example.todoapp.datasource.persistence.dao.ToDoDao
-import com.example.todoapp.datasource.persistence.database.ToDoDatabase
+import com.example.todoapp.datasource.local_persistence.ToDoDao
+import com.example.todoapp.datasource.local_persistence.ToDoDatabase
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module
 class DatabaseModule {

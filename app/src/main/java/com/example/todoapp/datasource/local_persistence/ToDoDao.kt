@@ -1,4 +1,4 @@
-package com.example.todoapp.datasource.persistence.dao
+package com.example.todoapp.datasource.local_persistence
 
 import androidx.room.Dao
 import androidx.room.Delete

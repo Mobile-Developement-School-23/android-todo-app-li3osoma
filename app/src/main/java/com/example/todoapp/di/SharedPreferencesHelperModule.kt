@@ -1,10 +1,9 @@
 package com.example.todoapp.di
 
 import android.content.Context
-import com.example.todoapp.datasource.persistence.SharedPreferencesHelper
+import com.example.todoapp.datasource.local_persistence.SharedPreferencesHelper
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module
 class SharedPreferencesHelperModule {

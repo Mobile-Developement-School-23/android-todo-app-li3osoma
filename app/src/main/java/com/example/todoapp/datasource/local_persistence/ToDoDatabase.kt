@@ -1,10 +1,8 @@
-package com.example.todoapp.datasource.persistence.database
+package com.example.todoapp.datasource.local_persistence
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.todoapp.datasource.persistence.dao.ToDoDao
-import com.example.todoapp.datasource.persistence.UUIDConverter
 import com.example.todoapp.domain.model.ToDoItem
 /*
 

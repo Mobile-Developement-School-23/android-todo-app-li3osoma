@@ -5,16 +5,9 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
-import androidx.appcompat.app.AppCompatDelegate
-import com.example.todoapp.datasource.persistence.SharedPreferencesHelper
 import com.example.todoapp.di.AppComponent
 import com.example.todoapp.di.AppModule
 import com.example.todoapp.di.DaggerAppComponent
-import com.example.todoapp.ui.view.MainActivity
-import com.example.todoapp.utils.DAY_THEME
-import com.example.todoapp.utils.NIGHT_THEME
-import com.example.todoapp.utils.SYSTEM_THEME
-import javax.inject.Inject
 
 class App: Application() {
 

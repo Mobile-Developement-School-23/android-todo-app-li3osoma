@@ -1,4 +1,4 @@
-package com.example.todoapp.datasource.persistence
+package com.example.todoapp.datasource.local_persistence
 
 import androidx.room.TypeConverter
 import java.util.UUID

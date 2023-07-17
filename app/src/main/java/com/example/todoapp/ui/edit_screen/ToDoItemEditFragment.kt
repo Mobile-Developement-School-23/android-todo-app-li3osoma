@@ -1,9 +1,8 @@
-package com.example.todoapp.ui.view
+package com.example.todoapp.ui.edit_screen
 
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.CompoundButton
@@ -21,7 +20,7 @@ import com.example.todoapp.datasource.network.connection.ConnectionObserver
 import com.example.todoapp.domain.model.ToDoItem
 import com.example.todoapp.utils.DateUtils
 import com.example.todoapp.utils.StringUtils
-import com.example.todoapp.ui.viewmodel.ToDoViewModel
+import com.example.todoapp.ui.common.ToDoViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.datepicker.MaterialDatePicker.INPUT_MODE_CALENDAR
 import kotlinx.coroutines.Dispatchers

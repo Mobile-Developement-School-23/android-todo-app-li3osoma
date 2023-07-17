@@ -1,18 +1,13 @@
-package com.example.todoapp.ui.view
+package com.example.todoapp.ui.list_screen
 
 import android.annotation.SuppressLint
 import android.graphics.*
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
-import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
@@ -27,14 +22,12 @@ import com.example.todoapp.App
 import com.example.todoapp.datasource.network.connection.ConnectionObserver
 import com.example.todoapp.R
 import com.example.todoapp.databinding.FragmentToDoListBinding
-import com.example.todoapp.datasource.persistence.SharedPreferencesHelper
+import com.example.todoapp.datasource.local_persistence.SharedPreferencesHelper
 import com.example.todoapp.domain.model.ToDoItem
 import com.example.todoapp.utils.*
-import com.example.todoapp.ui.viewmodel.ToDoViewModel
+import com.example.todoapp.ui.common.ToDoViewModel
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import java.util.UUID
 import javax.inject.Inject

@@ -1,15 +1,14 @@
 package com.example.todoapp.datasource.repository
 
 import android.util.Log
-import androidx.lifecycle.asLiveData
 import com.example.todoapp.datasource.network.api.ToDoApi
-import com.example.todoapp.datasource.network.connection.Resource
+import com.example.todoapp.datasource.network.dto.Resource
 import com.example.todoapp.datasource.network.dto.TaskListRequest
 import com.example.todoapp.datasource.network.dto.TaskRequest
 import com.example.todoapp.datasource.network.dto.TaskListResponse
 import com.example.todoapp.datasource.network.dto.TaskResponse
-import com.example.todoapp.datasource.persistence.SharedPreferencesHelper
-import com.example.todoapp.datasource.persistence.database.ToDoDatabase
+import com.example.todoapp.datasource.local_persistence.SharedPreferencesHelper
+import com.example.todoapp.datasource.local_persistence.ToDoDatabase
 import com.example.todoapp.domain.model.ToDoItem
 import com.example.todoapp.domain.repository.ToDoRepository
 import kotlinx.coroutines.flow.Flow
@@ -22,9 +21,9 @@ Work with remote and local data sources
 
  */
 class ToDoRepositoryImpl @Inject constructor(
-     private val todoDb: ToDoDatabase,
-     private val api:ToDoApi,
-     private val sharedPreferencesHelper: SharedPreferencesHelper) : ToDoRepository {
+    private val todoDb: ToDoDatabase,
+    private val api:ToDoApi,
+    private val sharedPreferencesHelper: SharedPreferencesHelper) : ToDoRepository {
 
 
     //COLLECTING REVISION

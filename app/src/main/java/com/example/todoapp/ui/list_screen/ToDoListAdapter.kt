@@ -1,20 +1,19 @@
-package com.example.todoapp.utils
+package com.example.todoapp.ui.list_screen
 
 import android.annotation.SuppressLint
 import android.graphics.Paint
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import android.widget.PopupMenu
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.R
 import com.example.todoapp.databinding.ItemTaskBinding
 import com.example.todoapp.domain.model.ToDoItem
+import com.example.todoapp.utils.DateUtils
 import java.util.UUID
 
 
@@ -68,7 +67,7 @@ class ToDoListAdapter(
 
     var items= emptyList<ToDoItem>()
     set(value) {
-        val diffCallback=ToDoListDiffUtilCallback(field, value)
+        val diffCallback= ToDoListDiffUtilCallback(field, value)
         val diffResult=DiffUtil.calculateDiff(diffCallback)
         field=value
         diffResult.dispatchUpdatesTo(this)
