@@ -78,7 +78,7 @@ class ToDoItemEditComposeFragment : Fragment() {
         text: String,
         onChanged: (String) -> Unit) {
         OutlinedTextField(
-            value = text,
+            value = "text",
             onValueChange = onChanged,
             singleLine = false,
             modifier =

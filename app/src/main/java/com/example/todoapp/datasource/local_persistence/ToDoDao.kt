@@ -45,4 +45,7 @@ interface ToDoDao {
     @Delete
     suspend fun deleteList(list: List<ToDoItem>)
 
+    @Query("DELETE FROM $DATABASE_NAME")
+    suspend fun deleteAll()
+
 }

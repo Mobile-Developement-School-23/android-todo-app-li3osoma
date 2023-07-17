@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.*
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -99,6 +100,10 @@ class ToDoListFragment : Fragment(){
     private fun setAdapterItems(list: List<ToDoItem>){
         if(toDoViewModel.modeVisibility) adapter.items=list.reversed()
         else adapter.items=list.filter { !it.done }.reversed()
+    }
+
+    private fun getAdapterItems():List<ToDoItem>{
+        return adapter.items.reversed()
     }
 
     private fun setUpFloatingButton(){
@@ -224,10 +229,13 @@ class ToDoListFragment : Fragment(){
                 }
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    val item = (viewHolder.itemView.tag as ToDoItem)
+                    val item = (viewHolder.itemView.tag as Pair<*, *>).first as ToDoItem
+                    val pose = (viewHolder.itemView.tag as Pair<*, *>).second as Int
                     when (direction) {
                         ItemTouchHelper.LEFT -> {
+                            //val pose = toDoViewModel.getPosition(item)
                             deleteTask(item)
+                            showRestoreItemSnackbar(item, pose)
                         }
                         ItemTouchHelper.RIGHT -> {
                             item.done=!item.done
@@ -250,12 +258,13 @@ class ToDoListFragment : Fragment(){
                     Snackbar.make(binding.recyclerView, "Task deleted", Snackbar.LENGTH_LONG)
                         .setAction("Undo") {
                             if (internetState == ConnectionObserver.Status.Available) {
-                                toDoViewModel.restoreTask(item, position)
+                                toDoViewModel.restoreTask(item, position, getAdapterItems())
                             } else {
-                                toDoViewModel.restoreTaskDb(item, position)
+                                toDoViewModel.restoreTaskDb(item, position, getAdapterItems())
                                 Toast.makeText(context, getString(R.string.no_connection_message), Toast.LENGTH_LONG).show()
                             }
-                            toDoViewModel.loadList()
+//                            toDoViewModel.loadList()
+//                            done =true
                         }.show()
                 }
 

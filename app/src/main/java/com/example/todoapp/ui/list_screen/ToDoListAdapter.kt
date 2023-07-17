@@ -133,7 +133,7 @@ class ToDoListAdapter(
     private fun setUpItemClickListener(holder: ToDoListViewHolder){
         holder.itemView.setOnClickListener(this)
         holder.itemView.setOnLongClickListener(View.OnLongClickListener {
-            val todoItem=it.tag as ToDoItem
+            val todoItem=(it.tag as Pair<*,*>).first as ToDoItem
             val popupMenu = PopupMenu(holder.itemView.context, holder.itemView)
             popupMenu.inflate(R.menu.action_popup_menu)
 
@@ -153,7 +153,7 @@ class ToDoListAdapter(
 
     @SuppressLint("ResourceType")
     override fun onBindViewHolder(holder: ToDoListViewHolder, position: Int) {
-        holder.itemView.tag=items[position]
+        holder.itemView.tag=Pair(items[position], items.size-position-1)
         val button:CompoundButton=holder.itemView.findViewById(R.id.checkbox)
         button.tag=items[position]
 
@@ -167,7 +167,7 @@ class ToDoListAdapter(
     }
 
     override fun onClick(v: View) {
-        val itemId:UUID=(v.tag as ToDoItem).id
+        val itemId:UUID=((v.tag as Pair<*,*>).first as ToDoItem).id
         taskActionListener.onTaskDetails(itemId)
     }
 }

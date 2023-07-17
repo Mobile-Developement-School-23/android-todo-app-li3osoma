@@ -38,7 +38,10 @@ class ToDoRepositoryImpl @Inject constructor(
 
     override fun getTaskDb(id: UUID): ToDoItem = todoDb.dao().getTask(id)
 
-    override suspend fun updateListDb(list: List<ToDoItem>) = todoDb.dao().updateList(list)
+    override suspend fun updateListDb(list: List<ToDoItem>){
+        todoDb.dao().deleteAll()
+        todoDb.dao().updateList(list)
+    }
 
     override suspend fun deleteTaskByIdDb(id: UUID) {
         todoDb.dao().deleteTaskById(id)
@@ -60,12 +63,14 @@ class ToDoRepositoryImpl @Inject constructor(
     override suspend fun restoreTaskDb(item: ToDoItem, position: Int, list: List<ToDoItem>) {
         val currentList=list.toMutableList()
         currentList.add(position, item)
+        Log.println(Log.INFO, "POSE2", position.toString())
         updateListDb(currentList)
     }
 
     override suspend fun restoreTask(item: ToDoItem, position: Int, list: List<ToDoItem>) {
         val currentList=list.toMutableList()
         currentList.add(position, item)
+        Log.println(Log.INFO, "POSE1", position.toString())
         updateListApi(currentList)
     }
 

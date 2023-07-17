@@ -19,6 +19,8 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import java.util.*
@@ -147,29 +149,31 @@ class ToDoViewModel @Inject constructor(
         job?.cancel()
     }
 
-    fun getPositionById(id: UUID): Int {
-        var ind = 0
-        viewModelScope.launch(Dispatchers.IO) {
-            val toDoList = list.toList()[0]
-            for (i in 0..toDoList.size) {
-                if (toDoList[i].id == id) {
-                    ind = i
-                    break
-                }
-            }
-        }
-        return ind
-    }
+//    fun getPosition(item: ToDoItem): Int {
+//        var ind = -1
+//        lateinit var list1:List<ToDoItem>
+//        viewModelScope.launch(Dispatchers.IO) {
+//
+//            Log.println(Log.INFO, "LIST",list.toString())
+//            for (i in list.indices) {
+//                if (item.id == list[i].id) {
+//                    ind = i
+//                    break
+//                }
+//            }
+//        }
+//        return ind
+//    }
 
-  fun restoreTask(item: ToDoItem, position:Int){
+  fun restoreTask(item: ToDoItem, position:Int, list: List<ToDoItem>){
       viewModelScope.launch(Dispatchers.IO) {
-          toDoRepositoryImpl.restoreTask(item, position, list.toList()[0])
+          toDoRepositoryImpl.restoreTask(item, position, list)
       }
   }
 
-    fun restoreTaskDb(item: ToDoItem, position:Int){
+    fun restoreTaskDb(item: ToDoItem, position:Int, list: List<ToDoItem>){
         viewModelScope.launch(Dispatchers.IO) {
-            toDoRepositoryImpl.restoreTaskDb(item, position, list.toList()[0])
+            toDoRepositoryImpl.restoreTaskDb(item, position, list)
         }
     }
 }
